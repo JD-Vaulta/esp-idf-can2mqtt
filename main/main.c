@@ -417,9 +417,9 @@ void app_main()
 	}
 
 	// Create Queue
-	xQueue_mqtt_tx = xQueueCreate( 10, sizeof(MQTT_t) );
+	xQueue_mqtt_tx = xQueueCreate( 1000, sizeof(MQTT_t) );
 	configASSERT( xQueue_mqtt_tx );
-	xQueue_twai_tx = xQueueCreate( 10, sizeof(twai_message_t) );
+	xQueue_twai_tx = xQueueCreate( 1000, sizeof(twai_message_t) );
 	configASSERT( xQueue_twai_tx );
 
 	// build publish table
