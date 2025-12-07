@@ -226,6 +226,7 @@ Receive CANbus using UNO.
 # Receive MQTT data using python
 ```
 python3 -m pip install -U paho-mqtt
+python3 -m pip install -U argparse
 python3 mqtt_sub.py
 ```
 
