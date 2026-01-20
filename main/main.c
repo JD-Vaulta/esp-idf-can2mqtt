@@ -397,7 +397,9 @@ void app_main()
 	ESP_LOGI(TAG, "CTX_GPIO=%d",CONFIG_CTX_GPIO);
 	ESP_LOGI(TAG, "CRX_GPIO=%d",CONFIG_CRX_GPIO);
 
-	static const twai_general_config_t g_config = TWAI_GENERAL_CONFIG_DEFAULT(CONFIG_CTX_GPIO, CONFIG_CRX_GPIO, TWAI_MODE_NORMAL);
+	twai_general_config_t g_config = TWAI_GENERAL_CONFIG_DEFAULT(CONFIG_CTX_GPIO, CONFIG_CRX_GPIO, TWAI_MODE_NORMAL);
+	g_config.tx_queue_len = 1000;
+	g_config.rx_queue_len = 1000;
 	ESP_ERROR_CHECK(twai_driver_install(&g_config, &t_config, &f_config));
 	ESP_LOGI(TAG, "Driver installed");
 	ESP_ERROR_CHECK(twai_start());
@@ -430,7 +432,7 @@ void app_main()
 	}
 	dump_table(subscribe, nsubscribe);
 
-	xTaskCreate(mqtt_pub_task, "mqtt_pub", 1024*4, NULL, 2, NULL);
-	xTaskCreate(mqtt_sub_task, "mqtt_sub", 1024*4, NULL, 2, NULL);
-	xTaskCreate(twai_task, "twai_rx", 1024*6, NULL, 2, NULL);
+	xTaskCreate(mqtt_pub_task, "mqtt_pub", 1024*8, NULL, 5, NULL);
+	xTaskCreate(mqtt_sub_task, "mqtt_sub", 1024*6, NULL, 3, NULL);
+	xTaskCreate(twai_task, "twai_rx", 1024*8, NULL, 6, NULL);
 }

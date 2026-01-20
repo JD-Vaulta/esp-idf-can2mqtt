@@ -1,0 +1,12 @@
+sdkconfig
+sdkconfig.old
+.clangd
+build/
+dependencies.lock
+.vscode/
+*.log
+*.tmp
+managed_components/
+__pycache__/
+*.pyc
+*.pyo
