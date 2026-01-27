@@ -1,0 +1,2 @@
+# important information regarding CSV format for VS Code. Found https://github.com/nopnop2002/esp-idf-can2mqtt/issues/5
+# When using VS code, make sure to format the CSV in LF format and not the default CRLF. 
